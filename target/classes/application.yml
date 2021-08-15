@@ -1,0 +1,53 @@
+server:
+  port: 8080
+#配置spring的json日期的格式和时区
+spring:
+  devtools:
+    restart:
+      enabled: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+      FAIL_ON_EMPTY_BEANS: false
+    deserialization:
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+    default-property-inclusion: non_null
+    mapper:
+      PROPAGATE_TRANSIENT_MARKER: true
+    parser:
+      ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/stocks?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      auto-commit: false
+      connection-timeout: 30000
+      idle-timeout: 25000
+      login-timeout: 5
+      max-lifetime: 30000
+      read-only: false
+      validation-timeout: 3000
+      maximum-pool-size: 15
+      minimum-idle: 10
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+        useLocalSessionState: true
+        rewriteBatchedStatements: true
+        cacheResultSetMetadata: true
+        cacheServerConfiguration: true
+        elideSetAutoCommits: true
+        maintainTimeStats: false
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    banner: false
